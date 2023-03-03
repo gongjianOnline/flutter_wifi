@@ -35,7 +35,7 @@ class SocketServerController extends GetxController {
 
   // 监听socket
   handelSocket(Socket  socket){
-    print("xxxx");
+    // 只有接收到客户端的消息后才会进行初始化
     socketParams = socket;
     socket.write('Hello, user');
     socket.listen((data) {
