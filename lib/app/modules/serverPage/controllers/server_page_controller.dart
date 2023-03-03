@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
 import 'package:wifi_info_plugin_plus/wifi_info_plugin_plus.dart';
 import "../../../utils/socketServer.dart";
+import "../../../../app/controllers/socket_server_controller.dart";
 
 class ServerPageController extends GetxController {
-  //TODO: Implement ServerPageController
+  final SocketServerController socketServerController = Get.find();
+
+
 
   RxInt count = 0.obs;
   WifiInfoWrapper? _wifiObject;
@@ -46,13 +49,12 @@ class ServerPageController extends GetxController {
   // 创建server
   serverButton()async{
     await initPlatformState();
-    socket = SocketServer(IP,8888);
-    await socket.startServer();
+    socketServerController.createSocket(IP, 8888);
   }
 
   // 发送信息
   send(){
-    socket.send();
+    socketServerController.send();
   }
 
 
