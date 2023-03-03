@@ -5,15 +5,16 @@ class SocketServer {
   String IP;
 
   SocketServer(this.IP, this._port);
-
+  
   late ServerSocket _serverSocketObj;
-
+  late Socket  xxx;
   void startServer() async {
     try {
       _serverSocketObj = await ServerSocket.bind(IP, _port);
       print('Server started on port $_port');
       print('Server Socket created successfully!');
       _serverSocketObj.listen((socket) {
+        xxx = socket;
         socket.write('Hello, user');
         socket.listen((data) {
           final message = String.fromCharCodes(data).trim();
@@ -26,9 +27,10 @@ class SocketServer {
   }
 
   // 发送
-  void send(){
+  void send()async{
     // _socketObj.write('Hello, Socket Client!');
     print("做个摆设吧");
+    print(xxx);
   }
 
   // 监听关闭

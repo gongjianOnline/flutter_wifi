@@ -25,7 +25,6 @@ class SocketClient {
   }
 
   Future<void> sendData(String data) async {
-    print("1111");
     try {
       _socket.write(data);
     } catch (e) {
@@ -36,7 +35,6 @@ class SocketClient {
   Future<void> disconnect() async {
     try {
       await _socket.close();
-      print('Disconnected from server: $IP:$port');
     } catch (e) {
       print(e.toString());
     }
